@@ -8,8 +8,11 @@ ParsingBus::ParsingBus()
 	this->posBus->setPosition(ofVec3f(0.0, 0.0, 0.0));
 	
 	this->result = new ofxJSONElement();
+	this->lockList = new mutex();
 	this->updateRun = true;
 	this->threadUpdateBus = new thread(&ParsingBus::run, this);
+
+	
 
 	//cent. lon=-122.670188804517, cent. lat=45.5163462318906, zoom=16.6333565146525, lon=-122.670866632315, lat=45.5157937272067	=> 0 - 0
 	//cent. lon=-122.731024228244, cent. lat=45.5520580331802, zoom=17.6514510002014, lon=-122.732834284994, lat=45.5523641484565
@@ -37,6 +40,7 @@ ParsingBus::ParsingBus(string url, int maxB)
 	this->posBus = new ofSpherePrimitive();
 	this->posBus->setPosition(ofVec3f(0.0, 0.0, 0.0));
 	this->result = new ofxJSONElement();
+	this->lockList = new mutex();
 	this->updateRun = true;
 	this->threadUpdateBus = new thread(&ParsingBus::run, this);
 
@@ -133,16 +137,19 @@ void ParsingBus::run(){
 
 					//std::sort(this->listBus->begin(), this->listBus->end());
 					//Delet bus no update
+					this->lockList->lock();
 					for (int je = this->listBus->size() - 1; je >= 0; je--) {
 						if (!this->listBus->at(je)->getExist()) {
-							//this->listBus->at(je)->~Bus();
+							delete this->listBus->at(je);
+							this->listBus->erase(this->listBus->begin() + je);
 							//this->listBus->at(je)=nullptr;
-							this->listBus->erase(remove(this->listBus->begin(), this->listBus->end(), this->listBus->at(je)), this->listBus->end());
+							//this->listBus->erase(remove(this->listBus->begin(), this->listBus->end(), this->listBus->at(je)), this->listBus->end());
 							//this->listBus->erase(this->listBus->begin() + je);
 							//this->listBus->at(je) = this->listBus->back();//move the item in the back to the index
 							//this->listBus->pop_back(); //delete the item in the back
 						}
 					}
+					this->lockList->unlock();
 					/*for (int je = 0; je < this->listBus->size(); je++) {
 						if (!this->listBus->at(je)->getExist()) {
 							//this->listBus->at(je)->~Bus();
@@ -181,11 +188,13 @@ void ParsingBus::stop() {
 
 void ParsingBus::draw(bool drag, bool showD){
 	if (this->listBus != nullptr) {
+		this->lockList->lock();
 		for (int i = 0; i < this->listBus->size(); i++) {
 			if (this->listBus->at(i) != nullptr) {
 				this->listBus->at(i)->draw(drag, showD);
 			}
 		}
+		this->lockList->unlock();
 	}
 }
 
@@ -193,11 +202,17 @@ ParsingBus::~ParsingBus()
 {
 	this->stop();
 
-	for (int i = 0; i < this->listBus->size(); i++) {
-		delete this->listBus->at(i);
+	if (this->listBus != nullptr) {
+		this->lockList->lock();
+		for (int i = 0; i < this->listBus->size(); i++) {
+			delete this->listBus->at(i);
+		}
+		this->lockList->unlock();
+		this->listBus->clear();
+		delete this->listBus;
 	}
-
 	delete this->posBus;
-	delete this->listBus;
 	delete this->result;
+
+	delete this->lockList;
 }

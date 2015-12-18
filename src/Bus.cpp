@@ -2,6 +2,7 @@
 
 Bus::Bus()
 {
+	this->mutLock = new mutex();
 	this->idBus = -1;
 	for (int i = 0; i < sizeMaxHistory; i++) {
 		this->historyPos[i] = nullptr;
@@ -75,7 +76,7 @@ void Bus::setCoord(float x, float y) {
 	newPos->x = x;
 	newPos->y = y;
 
-	//this->mutLock->lock();
+	this->mutLock->lock();
 	//Decal History
 	for (int i = sizeMaxHistory - 1; i > -1; i--) {
 		this->historyPos[i] = this->historyPos[i - 1];
@@ -106,7 +107,7 @@ void Bus::setCoord(float x, float y) {
 	if (sizeHistPos < (sizeMaxHistory - 1)) {
 		sizeHistPos += 1;
 	}
-	//this->mutLock->unlock();
+	this->mutLock->unlock();
 }
 
 void Bus::update() {
@@ -118,7 +119,7 @@ void Bus::draw(bool drag, bool showDat) {
 	float newX = 0.0;
 	float newY = 0.0;
 	float newZ = 20;
-
+	this->mutLock->lock();
 	if (this->historyPos[1] != nullptr) {
 		
 		newX = (((this->historyPos[0]->x - this->historyPos[1]->x)*this->animBus) - this->historyPos[0]->x);
@@ -129,6 +130,7 @@ void Bus::draw(bool drag, bool showDat) {
 		this->lineBus->clear();
 				
 		//glColor4f(0.21875, 0.57421875, 0.83203125, 0.7);
+		// Draw the blue wall 
 		if (drag) {
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -178,42 +180,28 @@ void Bus::draw(bool drag, bool showDat) {
 	if (showDat && this->historyPos[1] != nullptr) {
 		ofDrawBitmapString(dataBus, newX + 5, newY, newZ + 5);
 	}
+	this->mutLock->unlock();
 }
 
 
 Bus::~Bus()
 {
-	//this->mutLock->lock();
+	this->mutLock->lock();
 	for (int i = sizeMaxHistory - 1; i > -1; i--) {
-		this->historyPos[i] = NULL;
 		delete this->historyPos[i];
 	}
-
 	for (int i = 0; i < 8; i++) {
-		this->effecBlur[i] = NULL;
 		delete this->effecBlur[i];
 	}
 
-	this->sphereBus = NULL;
 	delete this->sphereBus;
-
 	this->lineBus->clear();
-	this->lineBus = NULL;
 	delete this->lineBus;
-	//this->mutLock->unlock();
-	//delete this->mutLock;
+
+	this->mutLock->unlock();
+	delete this->mutLock;
+	//Not Working...
 	//delete[] this->historyPos;
 	//delete[] this->effecBlur;
-	// 
 	ofLogNotice("ofApp::setup") << "Bus removed";
-
-	//delete this->effecBlur; Memrory fuite
-	//delete[] this->historyPos;
-	//delete[] this->effecBlur;
-	/*delete[] & historyPos;
-	for (int i = 0; i < 8; i++) {
-		delete this->effecBlur[i];
-	}
-	delete [] &effecBlur;*/
-
 }

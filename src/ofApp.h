@@ -66,7 +66,6 @@ class ofApp : public ofBaseApp{
 
 		ofxXmlSettings * settings;
 		CamControl * cam;
-		MatrixMap * matrixMapText;
+		MatrixMap * matrixMapTextur;
 		ParsingBus * listBus;
-		
 };

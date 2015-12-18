@@ -1,10 +1,10 @@
 #pragma once
 #include "ofMain.h"
 
-/** \brief	The size mx. */
+/** \brief	The size X Map. */
 const int sizeMx = 18;
 
-/** \brief	The size my. */
+/** \brief	The size Y Map. */
 const int sizeMy = 22;
 
 /**********************************************************************************************//**
@@ -41,29 +41,6 @@ class MatrixMap
 		 **************************************************************************************************/
 		void draw();
 
-		/**********************************************************************************************//**
-		 * \fn	ofPlanePrimitive* MatrixMap::getPlaneMap(int i = 0, int j = 0);
-		 *
-		 * \brief	Gets plane map.
-		 *
-		 * \param	i	Zero-based index of the.
-		 * \param	j	The int to process.
-		 *
-		 * \return	null if it fails, else the plane map.
-		 **************************************************************************************************/
-		ofPlanePrimitive* getPlaneMap(int i = 0, int j = 0);
-
-		/**********************************************************************************************//**
-		 * \fn	ofImage* MatrixMap::getTextureMap(int i = 0, int j = 0);
-		 *
-		 * \brief	Gets texture map.
-		 *
-		 * \param	i	Zero-based index of the.
-		 * \param	j	The int to process.
-		 *
-		 * \return	null if it fails, else the texture map.
-		 **************************************************************************************************/
-		ofImage* getTextureMap(int i = 0, int j = 0);
 
 		/**********************************************************************************************//**
 		 * \fn	MatrixMap::~MatrixMap();

@@ -182,7 +182,7 @@ class Bus
 		float radiusB = 4.0;
 		string dataBus = "Data";
 		string fullDataBus = "Data";
-		//mutex *mutLock;
+		mutex *mutLock;
 
 		//Data OpenFrameWorks
 		ofSpherePrimitive *sphereBus;

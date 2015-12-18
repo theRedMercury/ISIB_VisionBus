@@ -47,30 +47,19 @@ void MatrixMap::draw() {
 	}
 }
 
-ofPlanePrimitive* MatrixMap::getPlaneMap(int i, int j) {
-	if (this->loadTextur) {
-		return this->matrixPlane[i][j];
-	}
-	return nullptr;
-}
-
-ofImage* MatrixMap::getTextureMap(int i , int j ) {
-	if (this->loadTextur) {
-		return this->matrixTexture[i][j];
-	}
-	return nullptr;
-}
 
 MatrixMap::~MatrixMap()
 {
 	if (this->loadTextur) {
 		for (int i = 0; i < sizeMx; i++) {
 			for (int j = 0; j < sizeMy; j++) {
+				this->matrixTexture[i][j]->clear();
 				delete this->matrixTexture[i][j];
 				delete this->matrixPlane[i][j];
 			}
 		}
-		delete[] this->matrixTexture;
-		delete[] this->matrixPlane;
+		
+		//delete[] this->matrixTexture;
+		//delete[] this->matrixPlane;
 	}
 }

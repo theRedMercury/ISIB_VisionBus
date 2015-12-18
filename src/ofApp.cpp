@@ -17,12 +17,13 @@ void ofApp::setup(){
 	/*ofEnableAntiAliasing();
 	ofEnableSmoothing();*/
 
-	this->matrixMapText = new MatrixMap(this->settings->getValue("settings:mapLoadTextur", 0) == 1);
+	this->matrixMapTextur = new MatrixMap(this->settings->getValue("settings:mapLoadTextur", 0) == 1);
 	this->listBus = new ParsingBus(this->settings->getValue("settings:urlBus", URLPORTLAND), this->settings->getValue("settings:maxBus", 0));
 	this->cam = new CamControl();
 
 	ofSetBackgroundColor(ofColor::fromHex(0x8b8c8d));
 	ofSetFullscreen(this->settings->getValue("settings:fullScreen", 0)==1);
+
 
 }
 
@@ -70,7 +71,7 @@ void ofApp::draw(){
 
 	//Map with texture
 	if (keyMode[0]) {
-		matrixMapText->draw();
+		matrixMapTextur->draw();
 	}
 
 	//Bus

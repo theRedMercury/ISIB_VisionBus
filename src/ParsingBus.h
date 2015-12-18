@@ -95,6 +95,7 @@ class ParsingBus
 		int indexRandom = -1;
 		bool updateRun = false;
 		bool drawing = true;
+		
 
 		int i;
 		int idB;
@@ -104,10 +105,11 @@ class ParsingBus
 		string lo;
 		clock_t time_end;
 
-		thread *threadUpdateBus = nullptr;
-		vector<Bus*> *listBus = nullptr;
-		ofSpherePrimitive *posBus = nullptr;
-		ofxJSONElement *result = nullptr;
+		mutex * lockList = nullptr;
+		thread * threadUpdateBus = nullptr;
+		vector<Bus*> * listBus = nullptr;
+		ofSpherePrimitive * posBus = nullptr;
+		ofxJSONElement * result = nullptr;
 			
 };
 
