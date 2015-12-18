@@ -1,0 +1,6 @@
+<settings>
+    <mapLoadTextur>1</mapLoadTextur>
+    <fullScreen>0</fullScreen>
+    <camControl>1</camControl>
+    <maxBus>250</maxBus> 
+</settings>
