@@ -1,6 +1,6 @@
-#include "ParseBus.h"
+#include "ParsingBus.h"
 
-ParseBus::ParseBus()
+ParsingBus::ParsingBus()
 {
 	this->urlBus = URLPORTLAND;
 	this->posBus = new ofSpherePrimitive();
@@ -9,7 +9,7 @@ ParseBus::ParseBus()
 	
 	this->result = new ofxJSONElement();
 	this->updateRun = true;
-	this->threadUpdateBus = new thread(&ParseBus::run, this);
+	this->threadUpdateBus = new thread(&ParsingBus::run, this);
 
 	//cent. lon=-122.670188804517, cent. lat=45.5163462318906, zoom=16.6333565146525, lon=-122.670866632315, lat=45.5157937272067	=> 0 - 0
 	//cent. lon=-122.731024228244, cent. lat=45.5520580331802, zoom=17.6514510002014, lon=-122.732834284994, lat=45.5523641484565
@@ -29,7 +29,7 @@ ParseBus::ParseBus()
 	//float poY = ((45.5163462318906) - 45.5163462318906) * 82437.73468960672;
 }
 
-ParseBus::ParseBus(string url, int maxB)
+ParsingBus::ParsingBus(string url, int maxB)
 {
 	
 	this->urlBus = url;
@@ -38,11 +38,11 @@ ParseBus::ParseBus(string url, int maxB)
 	this->posBus->setPosition(ofVec3f(0.0, 0.0, 0.0));
 	this->result = new ofxJSONElement();
 	this->updateRun = true;
-	this->threadUpdateBus = new thread(&ParseBus::run, this);
+	this->threadUpdateBus = new thread(&ParsingBus::run, this);
 
 }	
 
-ofVec3f * ParseBus::getPositionBus(){
+ofVec3f * ParsingBus::getPositionBus(){
 	//If no bus
 	if (this->indexRandom == -1 || this->listBus->at(this->indexRandom)==nullptr) {
 		return  &this->posBus->getPosition();
@@ -50,14 +50,14 @@ ofVec3f * ParseBus::getPositionBus(){
 	return this->listBus->at(this->indexRandom)->getPosBus();
 }
 
-string ParseBus::getDataBus() {
+string ParsingBus::getDataBus() {
 	if (this->indexRandom == -1 || this->listBus->at(this->indexRandom) == nullptr) {
 		return  "";
 	}
 	return this->listBus->at(this->indexRandom)->getData();
 }
 
-void ParseBus::run(){
+void ParsingBus::run(){
 	ofLogNotice("ofApp::setup") << "Thread start...";
 
 	while (this->updateRun) {
@@ -174,12 +174,12 @@ void ParseBus::run(){
 	}
 }
 
-void ParseBus::stop() {
+void ParsingBus::stop() {
 	this->updateRun = false;
 	this->threadUpdateBus->join();
 }
 
-void ParseBus::draw(bool drag, bool showD){
+void ParsingBus::draw(bool drag, bool showD){
 	if (this->listBus != nullptr) {
 		for (int i = 0; i < this->listBus->size(); i++) {
 			if (this->listBus->at(i) != nullptr) {
@@ -189,7 +189,7 @@ void ParseBus::draw(bool drag, bool showD){
 	}
 }
 
-ParseBus::~ParseBus()
+ParsingBus::~ParsingBus()
 {
 	this->stop();
 

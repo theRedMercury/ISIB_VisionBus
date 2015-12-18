@@ -183,7 +183,7 @@
     <ClCompile Include="src\ofxXmlSettings\libs\tinyxmlerror.cpp" />
     <ClCompile Include="src\ofxXmlSettings\libs\tinyxmlparser.cpp" />
     <ClCompile Include="src\ofxXmlSettings\src\ofxXmlSettings.cpp" />
-    <ClCompile Include="src\ParseBus.cpp" />
+    <ClCompile Include="src\ParsingBus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\CamControl.h" />
@@ -196,7 +196,7 @@
     <ClInclude Include="src\ofxJSON\src\ofxJSONElement.h" />
     <ClInclude Include="src\ofxXmlSettings\libs\tinyxml.h" />
     <ClInclude Include="src\ofxXmlSettings\src\ofxXmlSettings.h" />
-    <ClInclude Include="src\ParseBus.h" />
+    <ClInclude Include="src\ParsingBus.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

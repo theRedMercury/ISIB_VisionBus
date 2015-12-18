@@ -25,9 +25,6 @@
     <ClCompile Include="src\ofxJSON\src\ofxJSONElement.cpp">
       <Filter>src\ofxJSON\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\ParseBus.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\ofxXmlSettings\libs\tinyxml.cpp">
       <Filter>src\ofxXmlSettings\libs</Filter>
     </ClCompile>
@@ -41,6 +38,9 @@
       <Filter>src\ofxXmlSettings\src</Filter>
     </ClCompile>
     <ClCompile Include="src\CamControl.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ParsingBus.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,9 +98,6 @@
     <ClInclude Include="src\ofxJSON\src\ofxJSONElement.h">
       <Filter>src\ofxJSON\src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ParseBus.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="src\ofxXmlSettings\libs\tinyxml.h">
       <Filter>src\ofxXmlSettings\libs</Filter>
     </ClInclude>
@@ -108,6 +105,9 @@
       <Filter>src\ofxXmlSettings\src</Filter>
     </ClInclude>
     <ClInclude Include="src\CamControl.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParsingBus.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
