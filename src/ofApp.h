@@ -4,7 +4,7 @@
 #include "ofxXmlSettings\src\ofxXmlSettings.h"
 
 #include "MatrixMap.h"
-#include "ParseBus.h"
+#include "ParsingBus.h"
 #include "CamControl.h"
 
 #define RANDANIMROTATCAM 1000
@@ -64,9 +64,9 @@ class ofApp : public ofBaseApp{
 		uint64_t frNumRand = 0;
 		int randCam = 1;
 
-		ofxXmlSettings *settings;
-		CamControl *cam;
-		MatrixMap *matrixMapText;
-		ParseBus *listBus;
+		ofxXmlSettings * settings;
+		CamControl * cam;
+		MatrixMap * matrixMapText;
+		ParsingBus * listBus;
 		
 };

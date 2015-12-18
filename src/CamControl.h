@@ -62,7 +62,7 @@ class CamControl
 		* \brief	Updates the given data.
 		* \param [in,out]	data	If non-null, the data.
 		**************************************************************************************************/
-		void update(ofVec3f  data);
+		void update(ofVec3f & data);
 
 		/**********************************************************************************************//**
 		 * \fn	void CamControl::camBegin();
@@ -92,6 +92,6 @@ class CamControl
 		float distanceToObj = 350.0;
 
 		float rot = 0.0;
-		ofEasyCam *camera;
+		ofEasyCam * camera;
 };
 

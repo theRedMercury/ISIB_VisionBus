@@ -18,7 +18,7 @@ void ofApp::setup(){
 	ofEnableSmoothing();*/
 
 	this->matrixMapText = new MatrixMap(this->settings->getValue("settings:mapLoadTextur", 0) == 1);
-	this->listBus = new ParseBus(this->settings->getValue("settings:urlBus", URLPORTLAND), this->settings->getValue("settings:maxBus", 0));
+	this->listBus = new ParsingBus(this->settings->getValue("settings:urlBus", URLPORTLAND), this->settings->getValue("settings:maxBus", 0));
 	this->cam = new CamControl();
 
 	ofSetBackgroundColor(ofColor::fromHex(0x8b8c8d));

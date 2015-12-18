@@ -28,7 +28,7 @@ float CamControl::getDistanceToObj()
 	return this->distanceToObj;
 }
 
-void CamControl::update(ofVec3f data)
+void CamControl::update(ofVec3f & data)
 {
 	float bx = data.x;
 	float by = data.y;
