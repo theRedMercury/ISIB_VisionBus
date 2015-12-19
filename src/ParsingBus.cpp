@@ -72,8 +72,7 @@ void ParsingBus::run(){
 		busFullData = "";
 
 		try {
-			//this->urlBus;
-			if (this->result->open("example_output_pretty.json") && !this->result->empty())
+			if (this->result->open(this->urlBus) && !this->result->empty())
 			{
 				this->maxBusInList = this->result->get("resultSet", "resultSet")["vehicle"].size();
 				//Limite Size
