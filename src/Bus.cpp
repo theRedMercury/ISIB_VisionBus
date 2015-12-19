@@ -23,15 +23,36 @@ Bus::Bus()
 	}
 }
 
+Bus::Bus(int id, string d, string dat, float fx, float fy)
+{
+	this->mutLock = new mutex();
+	this->idBus = id;
+	this->dataBus = d;
+	this->fullDataBus = dat;
+
+	for (int i = 0; i < sizeMaxHistory; i++) {
+		this->historyPos[i] = nullptr;
+	}
+
+	this->sphereBus = new ofSpherePrimitive();
+	this->sphereBus->setPosition(fx, fy, 20);
+	this->sphereBus->setRadius(radiusB);
+
+	this->lineBus = new ofPolyline();
+	this->lineBus->addVertex(fx, fy, 0.0);
+	this->lineBus->addVertex(fx, fy, 20);
+
+	for (int i = 0; i < 8; i++) {
+		this->effecBlur[i] = new ofSpherePrimitive();
+		this->effecBlur[i]->setPosition(fx, fy, 20);
+		this->effecBlur[i]->setRadius((i / 1.5) + radiusB);
+	}
+}
 int Bus::getId() {
 	return this->idBus;
 }
 ofVec3f * Bus::getPosBus() {
 	return &this->sphereBus->getPosition();
-}
-
-ofSpherePrimitive* Bus::getBus() {
-	return this->sphereBus;
 }
 
 string Bus::getData() {
@@ -122,9 +143,11 @@ void Bus::draw(bool drag, bool showDat) {
 	this->mutLock->lock();
 	if (this->historyPos[1] != nullptr) {
 		
+		
 		newX = (((this->historyPos[0]->x - this->historyPos[1]->x)*this->animBus) - this->historyPos[0]->x);
 		newY = (((this->historyPos[0]->y - this->historyPos[1]->y)*this->animBus) - this->historyPos[0]->y);
 		newZ = -(((this->historyPos[0]->z - this->historyPos[1]->z)*this->animBus) - this->historyPos[0]->z);
+		
 		this->sphereBus->setPosition(newX, newY, newZ);
 		
 		this->lineBus->clear();
