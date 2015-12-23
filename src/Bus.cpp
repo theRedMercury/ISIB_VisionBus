@@ -106,6 +106,7 @@ void Bus::setCoord(float x, float y) {
 	if (this->historyPos[sizeMaxHistory - 1] != nullptr)
 	{
 		delete this->historyPos[sizeMaxHistory - 1];
+		this->historyPos[sizeMaxHistory - 1] = nullptr;
 	}
 
 	//Calcul Z
