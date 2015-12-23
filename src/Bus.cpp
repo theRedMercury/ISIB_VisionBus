@@ -212,7 +212,9 @@ Bus::~Bus()
 {
 	this->mutLock->lock();
 	for (int i = sizeMaxHistory - 1; i > -1; i--) {
-		delete this->historyPos[i];
+		if (this->historyPos[i] != nullptr) {
+			delete this->historyPos[i];
+		}
 	}
 	for (int i = 0; i < 8; i++) {
 		delete this->effecBlur[i];

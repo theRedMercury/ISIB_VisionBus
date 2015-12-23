@@ -14,16 +14,27 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 	ofDisableArbTex();
 	
-	/*ofEnableAntiAliasing();
-	ofEnableSmoothing();*/
-
+	//Conf aliasing/smoothing
+	if (this->settings->getValue("settings:antiAliasing", 0) == 1) {
+		ofEnableAntiAliasing();
+	}
+	if (this->settings->getValue("settings:smoothing", 0) == 1) {
+		ofEnableSmoothing();
+	}
+	
+	this->randCamNext = this->settings->getValue("settings:randCamRot", RANDANIMROTATCAM);
+	
+	//Creat main objects
 	this->matrixMapTextur = new MatrixMap(this->settings->getValue("settings:mapLoadTextur", 0) == 1);
-	this->listBus = new ParsingBus(this->settings->getValue("settings:urlBus", URLPORTLAND), this->settings->getValue("settings:maxBus", 0));
+	this->listBus = new ParsingBus(this->settings->getValue("settings:urlBus", URLPORTLAND), 
+									this->settings->getValue("settings:maxBus", 0));
+	
 	this->cam = new CamControl();
+	this->autoCam = this->settings->getValue("settings:camControl", 0) == 1;
 
 	ofSetBackgroundColor(ofColor::fromHex(0x8b8c8d));
 	ofSetFullscreen(this->settings->getValue("settings:fullScreen", 0)==1);
-
+	ofSetWindowTitle("ISIB Vision Bus 1.0");
 
 }
 
@@ -39,7 +50,7 @@ void ofApp::draw(){
 	if (frNumRand < ofGetFrameNum()) {
 		randCam = (rand() % (3 + 1 - -3)) + -3;
 		this->cam->setParamCam(this->cam->getDistanceToObj(), (float(0.1) * randCam), this->cam->getHeightCamera());
-		frNumRand = ofGetFrameNum() + RANDANIMROTATCAM;
+		frNumRand = ofGetFrameNum() + this->randCamNext;
 	}
 
 	//Background Gradient
@@ -58,9 +69,6 @@ void ofApp::draw(){
 	glEnd();
 	
 	this->cam->camBegin();
-	
-	//ofFill();
-	//ofSetSmoothLighting(true);
 
 	//Grid
 	if (keyMode[1]) {
@@ -77,8 +85,11 @@ void ofApp::draw(){
 	//Bus
 	this->listBus->draw(keyMode[2], keyMode[3]);
 
-	//If i send a ofVec3f * => fail...
-	this->cam->update(*this->listBus->getPositionBus());
+	if (this->autoCam) {
+		//If i send a ofVec3f * => fail...
+		this->cam->update(*this->listBus->getPositionBus());
+	}
+
 	this->cam->camEnd();
 
 	//Data label 2d

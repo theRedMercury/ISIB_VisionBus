@@ -55,14 +55,16 @@ class ofApp : public ofBaseApp{
 	private:
 		
 		bool fullScreen = false;
+		bool autoCam = true;
 		bool keyMode[5] = {true, true ,true ,true ,true};
 
 
-		std::stringstream dataToScreenLeft;
-		std::stringstream dataToScreenRight;
+		stringstream dataToScreenLeft;
+		stringstream dataToScreenRight;
 		
 		uint64_t frNumRand = 0;
 		int randCam = 1;
+		int randCamNext = -1;
 
 		ofxXmlSettings * settings;
 		CamControl * cam;
