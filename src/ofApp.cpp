@@ -98,10 +98,23 @@ void ofApp::draw(){
 	this->dataToScreenLeft << this->listBus->getDataBus() << std::endl;
 	ofDrawBitmapString(this->dataToScreenLeft.str(), 5, 14);
 
-	this->dataToScreenRight.str("");
-	this->dataToScreenRight << "FPS : " << ofGetFrameRate() << std::endl;
-	ofDrawBitmapString(this->dataToScreenRight.str(), ofGetWidth()-85, 14);
+	//Show Help
+	if (keyMode[5]) {
+		ofSetColor(0, 175, 0, 255.0);
+		this->dataToScreenLeftHelp.str("");
+		this->dataToScreenLeftHelp << "\nHelp :\n  1 : Show Map\n  2 : Show Grid\n  3 : Course" ;
+		this->dataToScreenLeftHelp << "\n  4 : Data Bus\n  5 : Lock Bus\n  6 : Next Bus";
+		this->dataToScreenLeftHelp << "\n  7 : Free Cam\n F2 : Show FPS\nF11 : FullScreen" << std::endl;
+		ofDrawBitmapString(this->dataToScreenLeftHelp.str(), 5, 55);
+	}
 
+	//Show FPS
+	if (keyMode[4]) {
+		ofSetColor(0, 0, 0, 255.0);
+		this->dataToScreenRight.str("");
+		this->dataToScreenRight << "FPS : " << ofGetFrameRate() << std::endl;
+		ofDrawBitmapString(this->dataToScreenRight.str(), ofGetWidth() - 85, 14);
+	}
 }
 
 //--------------------------------------------------------------
@@ -115,16 +128,30 @@ void ofApp::keyReleased(int key){
 	float addRot = this->cam->getSpeedRotation();
 	float addHeightCam = this->cam->getHeightCamera();
 	float dist = this->cam->getDistanceToObj();
-
+	ofLogNotice("ofApp::setup") << key;
+	/*	38	=	1
+		233	=	2
+		34	=	3
+		39	=	4
+		40	=	5
+		167 =	6
+		232 =	7
+	*/
 	switch (key)
 	{
-	case OF_KEY_F1: keyMode[0] = !keyMode[0];
+	case OF_KEY_F1: keyMode[5] = !keyMode[5];
 		break;
-	case OF_KEY_F2: keyMode[1] = !keyMode[1];
+	case OF_KEY_F2: keyMode[4] = !keyMode[4];
 		break;
-	case OF_KEY_F3: keyMode[2] = !keyMode[2];
+	case 38: keyMode[0] = !keyMode[0];
 		break;
-	case OF_KEY_F4: keyMode[3] = !keyMode[3];
+	case 233: keyMode[1] = !keyMode[1];
+		break;
+	case 34: keyMode[2] = !keyMode[2];
+		break;
+	case 39: keyMode[3] = !keyMode[3];
+		break;
+	case 232: this->autoCam = !this->autoCam;
 		break;
 	case OF_KEY_RIGHT: addRot += float(0.1);
 		break;

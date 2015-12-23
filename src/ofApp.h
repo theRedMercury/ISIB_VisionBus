@@ -56,10 +56,11 @@ class ofApp : public ofBaseApp{
 		
 		bool fullScreen = false;
 		bool autoCam = true;
-		bool keyMode[5] = {true, true ,true ,true ,true};
+		bool keyMode[6] = {true, true ,true ,true ,true, false};
 
 
 		stringstream dataToScreenLeft;
+		stringstream dataToScreenLeftHelp;
 		stringstream dataToScreenRight;
 		
 		uint64_t frNumRand = 0;
