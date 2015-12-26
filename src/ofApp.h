@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ofMain.h"
+#include "ofMain.h" 
 #include "ofxXmlSettings\src\ofxXmlSettings.h"
 
 #include "MatrixMap.h"
@@ -56,8 +56,9 @@ class ofApp : public ofBaseApp{
 		
 		bool fullScreen = false;
 		bool autoCam = true;
-		bool keyMode[6] = {true, true ,true ,true ,true, false};
-
+		bool keyMode[7] = {true, true ,true ,true ,false, true, true };
+		bool keyIsDown[255];
+		float speedCam = 5.0;
 
 		stringstream dataToScreenLeft;
 		stringstream dataToScreenLeftHelp;
@@ -71,4 +72,5 @@ class ofApp : public ofBaseApp{
 		CamControl * cam;
 		MatrixMap * matrixMapTextur;
 		ParsingBus * listBus;
+
 };

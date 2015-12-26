@@ -6,6 +6,28 @@ CamControl::CamControl()
 	this->camera = new ofEasyCam();
 }
 
+void CamControl::backForwardCam(float v)
+{
+	this->camera->dolly(v);
+	this->camera->setTarget(this->camera->getPosition());
+}	
+void CamControl::leftRightCam(float v)
+{
+	this->camera->truck(v);
+	this->camera->setTarget(this->camera->getPosition());
+}
+void CamControl::upDownCam(float v)
+{
+	this->camera->boom(v);
+	this->camera->setTarget(this->camera->getPosition());
+}
+void CamControl::rotatCam(float v)
+{
+	this->camera->roll(v);
+	this->camera->setTarget(this->camera->getPosition());
+}
+
+
 void CamControl::camBegin()
 {
 	this->camera->begin();

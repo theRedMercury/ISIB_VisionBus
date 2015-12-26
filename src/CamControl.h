@@ -22,6 +22,12 @@ class CamControl
 		 **************************************************************************************************/
 		CamControl();
 
+		void backForwardCam(float v);
+		void leftRightCam(float v);
+		void upDownCam(float v);
+		void rotatCam(float v);
+		void zoomCam(float v);
+
 		/**********************************************************************************************//**
 		 * \fn	float CamControl::getSpeedRotation();
 		 *
