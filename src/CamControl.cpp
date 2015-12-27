@@ -8,25 +8,53 @@ CamControl::CamControl()
 
 void CamControl::backForwardCam(float v)
 {
-	this->camera->dolly(v);
+	if (this->camera->getPosition().z+v > 8.0) {
+		this->camera->dolly(v);
+	}
+	else {
+		this->camera->dolly(v);
+		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, 8.0);
+	}
 	this->camera->setTarget(this->camera->getPosition());
 }	
 void CamControl::leftRightCam(float v)
 {
-	this->camera->truck(v);
+	if (this->camera->getPosition().z + v > 8.0) {
+		this->camera->truck(v);
+	}
+	else {
+		this->camera->truck(v);
+		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, 8.0);
+	}
 	this->camera->setTarget(this->camera->getPosition());
 }
-void CamControl::upDownCam(float v)
+void CamControl::slideUpDown(float v)
 {
-	this->camera->boom(v);
+	if (this->camera->getPosition().z + v > 8.0) {
+		this->camera->boom(v);
+	}
+	else {
+		this->camera->boom(v);
+		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, 8.0);
+	}
 	this->camera->setTarget(this->camera->getPosition());
 }
 void CamControl::rotatCam(float v)
 {
 	this->camera->roll(v);
-	this->camera->setTarget(this->camera->getPosition());
+	//this->camera->setTarget(this->camera->getPosition());
 }
 
+void CamControl::rotateUpDownCam(float v)
+{
+	this->camera->tilt(v);
+	//this->camera->setTarget(this->camera->getPosition());
+}
+void CamControl::rotateLeftRightCam(float v)
+{
+	this->camera->pan(v);
+	//this->camera->setTarget(this->camera->getPosition());
+}
 
 void CamControl::camBegin()
 {

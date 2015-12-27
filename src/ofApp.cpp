@@ -87,9 +87,15 @@ void ofApp::draw(){
 		this->cam->rotatCam(-1.0);
 	}
 	if (keyIsDown[114]) {//+ R
-		this->speedCam += 0.2;
+		this->cam->slideUpDown(this->speedCam);
 	}
 	if (keyIsDown[102]) {//- F
+		this->cam->slideUpDown(-this->speedCam);
+	}
+	if (keyIsDown[43]) {//+ 
+		this->speedCam += 0.2;
+	}
+	if (keyIsDown[45]) {//- 
 		this->speedCam -= 0.2;
 	}
 
@@ -113,6 +119,28 @@ void ofApp::draw(){
 	if (this->autoCam) {
 		//If i send a ofVec3f * => fail...
 		this->cam->update(*this->listBus->getPositionBus());
+	}
+	else {
+		//ofLogNotice("ofApp::setup") << ((float)((float)((ofGetWidth() / 2)+ofGetMouseX()) / (float)(ofGetWidth() / 2))-1.0)*1.5;
+		this->cam->rotateLeftRightCam(-((float)((float)((ofGetWidth() / 2)+ofGetMouseX()) / (float)(ofGetWidth() / 2))-2.0)*1.5);
+		this->cam->rotateUpDownCam(-((float)((float)((ofGetHeight() / 2) + ofGetMouseY()) / (float)(ofGetHeight() / 2)) - 2.0)*1.5);
+		/*if (ofGetMouseX() <= ((ofGetWidth() / 2) - 125)) {
+			this->cam->slidLeftRightCam(0.8);
+		}
+		else {
+			if (ofGetMouseX() >= ((ofGetWidth() / 2) + 125)) {
+				//(x + ((ofGetWidth() / 2) + 125)) / (ofGetWidth() - (((ofGetWidth() / 2) + 125)))
+				this->cam->slidLeftRightCam(-0.1);
+			}
+		}
+		if (ofGetMouseY()  <= ((ofGetHeight() / 2) - 125)) {
+			this->cam->slidUpDownCam(0.8);
+		}
+		else {
+			if (ofGetMouseY() >= ((ofGetHeight() / 2) + 125)) {
+				this->cam->slidUpDownCam(-0.8);
+			}
+		}*/
 	}
 
 	this->cam->camEnd();
@@ -146,7 +174,9 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-	keyIsDown[key] = true;
+	if (key < 256) {
+		keyIsDown[key] = true;
+	}
 	//ofLogNotice("ofApp::setup") << key;
 	/*float speedM = 5.0;
 	switch (key)
@@ -168,7 +198,9 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	keyIsDown[key] = false;
+	if (key < 256) {
+		keyIsDown[key] = false;
+	}
 	//Get param camera
 	float addRot = this->cam->getSpeedRotation();
 	float addHeightCam = this->cam->getHeightCamera();
@@ -233,7 +265,7 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-
+	
 }
 
 //--------------------------------------------------------------
