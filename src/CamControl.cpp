@@ -17,6 +17,7 @@ void CamControl::backForwardCam(float v)
 	}
 	this->camera->setTarget(this->camera->getPosition());
 }	
+
 void CamControl::leftRightCam(float v)
 {
 	if (this->camera->getPosition().z + v > 8.0) {
@@ -28,6 +29,7 @@ void CamControl::leftRightCam(float v)
 	}
 	this->camera->setTarget(this->camera->getPosition());
 }
+
 void CamControl::slideUpDown(float v)
 {
 	if (this->camera->getPosition().z + v > 8.0) {
@@ -39,21 +41,20 @@ void CamControl::slideUpDown(float v)
 	}
 	this->camera->setTarget(this->camera->getPosition());
 }
+
 void CamControl::rotatCam(float v)
 {
 	this->camera->roll(v);
-	//this->camera->setTarget(this->camera->getPosition());
 }
 
 void CamControl::rotateUpDownCam(float v)
 {
 	this->camera->tilt(v);
-	//this->camera->setTarget(this->camera->getPosition());
 }
+
 void CamControl::rotateLeftRightCam(float v)
 {
 	this->camera->pan(v);
-	//this->camera->setTarget(this->camera->getPosition());
 }
 
 void CamControl::camBegin()
