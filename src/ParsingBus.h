@@ -7,7 +7,7 @@
 #include "ofMain.h"
 #include "ofxJSON\src\ofxJSON.h"
 
-#define URLPORTLAND "https://developer.trimet.org/ws/v2/vehicles/locIDs/6849,6850/appID/57CDC57DB4E60BE1AA0A100E2"
+#define URLPORTLAND "https://developer.trimet.org/ws/v2/vehicles/locIDs/6849,6850/appID/XXXXXXXXXXXXXXXXXXXXXXXXX"
 
 /**********************************************************************************************//**
  * \class	ParseBus
