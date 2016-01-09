@@ -1,6 +1,5 @@
 #include "CamControl.h"
 
-
 CamControl::CamControl()
 {
 	this->camera = new ofEasyCam();
@@ -8,36 +7,36 @@ CamControl::CamControl()
 
 void CamControl::backForwardCam(float v)
 {
-	if (this->camera->getPosition().z+v > 8.0) {
+	if (this->camera->getPosition().z+v > GROUND) {
 		this->camera->dolly(v);
 	}
 	else {
 		this->camera->dolly(v);
-		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, 8.0);
+		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, GROUND);
 	}
 	this->camera->setTarget(this->camera->getPosition());
 }	
 
 void CamControl::leftRightCam(float v)
 {
-	if (this->camera->getPosition().z + v > 8.0) {
+	if (this->camera->getPosition().z + v > GROUND) {
 		this->camera->truck(v);
 	}
 	else {
 		this->camera->truck(v);
-		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, 8.0);
+		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, GROUND);
 	}
 	this->camera->setTarget(this->camera->getPosition());
 }
 
 void CamControl::slideUpDown(float v)
 {
-	if (this->camera->getPosition().z + v > 8.0) {
+	if (this->camera->getPosition().z + v > GROUND) {
 		this->camera->boom(v);
 	}
 	else {
 		this->camera->boom(v);
-		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, 8.0);
+		this->camera->setPosition(this->camera->getPosition().x, this->camera->getPosition().y, GROUND);
 	}
 	this->camera->setTarget(this->camera->getPosition());
 }

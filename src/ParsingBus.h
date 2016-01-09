@@ -87,7 +87,8 @@ class ParsingBus
 		~ParsingBus();
 
 	private:
-
+		void sleepThread(int msTime = 1000);
+		void addBus(int index = 0);
 
 		string urlBus = "";
 		int maxBus = 250;
@@ -97,13 +98,12 @@ class ParsingBus
 		bool drawing = true;
 		
 
-		int i;
+		/*int i;*/
 		int idB;
 		string busData;
 		string busFullData;
 		string la;
 		string lo;
-		clock_t time_end;
 
 		mutex * lockList = nullptr;
 		thread * threadUpdateBus = nullptr;
