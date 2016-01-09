@@ -82,40 +82,43 @@ void ParsingBus::run(){
 
 					//Init first Time Liste Bus
 					if (this->listBus == nullptr) {
+						//this->lockList->lock();
 						this->listBus = new vector<Bus*>();
 						for (int i = 0; i < this->maxBusInList; i++) {
-							this->addBus(i);
+
+							idB = this->result->get("resultSet", "resultSet")["vehicle"][i]["vehicleID"].asInt();
+							busData = this->result->get("resultSet", "resultSet")["vehicle"][i]["type"].asString();
+							this->listBus->push_back(new Bus(idB,
+								busData + ":" + to_string(idB),
+								busData + ":" + to_string(idB) + "\n" + this->result->get("resultSet", "resultSet")["vehicle"][i]["signMessage"].asString()
+								+ "\n" + this->result->get("resultSet", "resultSet")["vehicle"][i]["signMessageLong"].asString(),
+								-(((atof(this->result->get("resultSet", "resultSet")["vehicle"][i]["longitude"].asString().c_str())) - -122.670188804517) * 39976.70848671395),
+								-(((atof(this->result->get("resultSet", "resultSet")["vehicle"][i]["latitude"].asString().c_str())) - 45.5163462318906) * 82437.73468960672)));
+							
+							//this->addBus(i);
 						}
+						//this->lockList->unlock();
 						ofLogNotice("ofApp::setup") << this->maxBusInList << " create bus";
 					}
 
 					else{
 						if (this->maxBusInList > this->listBus->size()) {
 							ofLogNotice("ofApp::setup") << "Need to create Bus";
-							this->lockList->lock();
-							for (int i = 0; i <  this->maxBusInList; i++) {
-								if (i > this->listBus->size()) {
-									this->listBus->push_back(new Bus());
-									ofLogNotice("ofApp::setup") << "Add new Bus";
-								}
-								else {
-									if (this->listBus->at(i) == nullptr) {
-										this->listBus->push_back(new Bus());
-										ofLogNotice("ofApp::setup") << "Add new Bus";
-									}
-								}
+							//this->lockList->lock();
+							for (int i = 0; i < (this->listBus->size() - maxBus); i++) {
+								this->listBus->push_back(new Bus());
+								ofLogNotice("ofApp::setup") << "Add new Bus";
 							}
-							this->lockList->unlock();
+							//this->lockList->unlock();
 						}
 						//Init False all Bus--------------------------------
 						//this->lockList->lock();
-						for (int ju = 0; ju < this->listBus->size(); ju++) {
+						for (int ju = 0; ju < this->maxBusInList; ju++) {
 							this->listBus->at(ju)->setExist(false);
 						}
 						//this->lockList->unlock();
 
 						for (int j = 0; j < this->listBus->size(); j++) {
-							
 							idB = this->result->get("resultSet", "resultSet")["vehicle"][j]["vehicleID"].asInt();
 							busData = this->result->get("resultSet", "resultSet")["vehicle"][j]["type"].asString() + ":" + to_string(idB);
 							busFullData = busData + "\n" + this->result->get("resultSet", "resultSet")["vehicle"][j]["signMessage"].asString();
@@ -125,7 +128,7 @@ void ParsingBus::run(){
 							
 							ind = 0;
 
-							while (ind <= this->listBus->size()) {
+							while (ind < this->maxBusInList) {
 								//this->lockList->lock();
 								if (this->listBus->at(ind)->getId() == -1) {
 									this->listBus->at(ind)->setId(idB);
@@ -154,7 +157,9 @@ void ParsingBus::run(){
 					for (int je = this->listBus->size() - 1; je >= 0; je--) {
 						if (!this->listBus->at(je)->getExist()) {
 							delete this->listBus->at(je);
-							this->listBus->at(je) = nullptr;
+							this->listBus->erase(this->listBus->begin() + je);
+							//this->listBus->at(je) = nullptr;
+
 						}
 					}
 					this->lockList->unlock();
@@ -167,8 +172,11 @@ void ParsingBus::run(){
 			}
 		}
 		//All Error...
+		catch (const std::exception& e) {
+			ofLogError("ofApp::setup") << "FATA ERROR " << e.what() << endl;
+		}
 		catch (...) {
-			ofLogError("ofApp::setup") << "Failed to open JSON... :( " << endl;
+			ofLogError("ofApp::setup") << "Failed to open JSON... :( "  << endl;
 		}
 		this->sleepThread(15000);
 	}
@@ -202,16 +210,7 @@ void ParsingBus::addBus(int index) {
 	this->listBus->push_back(new Bus(idB, busData, busFullData,
 	-(((atof(lo.c_str())) - -122.670188804517) * 39976.70848671395),
 	-(((atof(la.c_str())) - 45.5163462318906) * 82437.73468960672)));*/
-	int idBus = this->result->get("resultSet", "resultSet")["vehicle"][index]["vehicleID"].asInt();
-	string typeBus = this->result->get("resultSet", "resultSet")["vehicle"][index]["type"].asString();
-	this->lockList->lock();
-	this->listBus->push_back(new Bus(idBus,
-		typeBus + ":" + to_string(idBus),
-		typeBus + ":" + to_string(idBus) + "\n" + this->result->get("resultSet", "resultSet")["vehicle"][index]["signMessage"].asString()
-		+ "\n" + this->result->get("resultSet", "resultSet")["vehicle"][index]["signMessageLong"].asString(),
-		-(((atof(this->result->get("resultSet", "resultSet")["vehicle"][index]["longitude"].asString().c_str())) - -122.670188804517) * 39976.70848671395),
-		-(((atof(this->result->get("resultSet", "resultSet")["vehicle"][index]["latitude"].asString().c_str())) - 45.5163462318906) * 82437.73468960672)));
-	this->lockList->unlock();
+	
 }
 
 void ParsingBus::sleepThread(int msTime) {
