@@ -199,20 +199,6 @@ void ParsingBus::draw(bool drag, bool showD){
 	}
 }
 
-void ParsingBus::addBus(int index) {
-	/*idB = this->result->get("resultSet", "resultSet")["vehicle"][i]["vehicleID"].asInt();
-	busData = this->result->get("resultSet", "resultSet")["vehicle"][i]["type"].asString() + ":" + to_string(idB);
-	busFullData = busData + "\n" + this->result->get("resultSet", "resultSet")["vehicle"][i]["signMessage"].asString();
-	busFullData += "\n" + this->result->get("resultSet", "resultSet")["vehicle"][i]["signMessageLong"].asString();
-	lo = this->result->get("resultSet", "resultSet")["vehicle"][i]["longitude"].asString();
-	la = this->result->get("resultSet", "resultSet")["vehicle"][i]["latitude"].asString();
-
-	this->listBus->push_back(new Bus(idB, busData, busFullData,
-	-(((atof(lo.c_str())) - -122.670188804517) * 39976.70848671395),
-	-(((atof(la.c_str())) - 45.5163462318906) * 82437.73468960672)));*/
-	
-}
-
 void ParsingBus::sleepThread(int msTime) {
 	clock_t timeEnd = clock() + msTime * CLOCKS_PER_SEC / 1000;
 	while (clock() < timeEnd)

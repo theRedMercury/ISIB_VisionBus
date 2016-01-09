@@ -88,7 +88,6 @@ class ParsingBus
 
 	private:
 		void sleepThread(int msTime = 1000);
-		void addBus(int index = 0);
 
 		string urlBus = "";
 		int maxBus = 250;
