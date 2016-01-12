@@ -39,6 +39,17 @@ class Bus
 		 **************************************************************************************************/
 		Bus();
 
+		/**********************************************************************************************//**
+		* \fn	Bus::Bus(int id, string d, string dat, float fx, float fy);
+		*
+		* \brief	Constructor with Bus param.
+		* 			
+		* \param	id   	ID of the bus.
+		* \param	d		Data short of the bus.
+		* \param	dat   	Data of the bus.
+		* \param	fx		Pos X.
+		* \param	fy		Pox Y.				
+		**************************************************************************************************/
 		Bus(int id, string d, string dat, float fx, float fy);
 
 		/**********************************************************************************************//**
