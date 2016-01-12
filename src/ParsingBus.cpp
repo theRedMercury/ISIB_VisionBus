@@ -94,8 +94,7 @@ void ParsingBus::run(){
 								+ "\n" + this->result->get("resultSet", "resultSet")["vehicle"][i]["signMessageLong"].asString(),
 								-(((atof(this->result->get("resultSet", "resultSet")["vehicle"][i]["longitude"].asString().c_str())) - -122.670188804517) * 39976.70848671395),
 								-(((atof(this->result->get("resultSet", "resultSet")["vehicle"][i]["latitude"].asString().c_str())) - 45.5163462318906) * 82437.73468960672)));
-							
-							//this->addBus(i);
+
 						}
 						//this->lockList->unlock();
 						ofLogNotice("ofApp::setup") << this->maxBusInList << " create bus";
@@ -159,7 +158,6 @@ void ParsingBus::run(){
 							delete this->listBus->at(je);
 							this->listBus->erase(this->listBus->begin() + je);
 							//this->listBus->at(je) = nullptr;
-
 						}
 					}
 					this->lockList->unlock();
