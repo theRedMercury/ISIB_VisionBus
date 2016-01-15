@@ -48,12 +48,16 @@ void CamControl::rotatCam(float v)
 
 void CamControl::rotateUpDownCam(float v)
 {
-	this->camera->tilt(v);
+	if (v > 0.15|| v < -0.15) {
+		this->camera->tilt(v);
+	}
 }
 
 void CamControl::rotateLeftRightCam(float v)
 {
-	this->camera->pan(v);
+	if (v > 0.15 || v < -0.15) {
+		this->camera->pan(v);
+	}
 }
 
 void CamControl::camBegin()

@@ -124,6 +124,7 @@ void ofApp::draw(){
 		//ofLogNotice("ofApp::setup") << ((float)((float)((ofGetWidth() / 2)+ofGetMouseX()) / (float)(ofGetWidth() / 2))-1.0)*1.5;
 		this->cam->rotateLeftRightCam(-((float)((float)((ofGetWidth() / 2)+ofGetMouseX()) / (float)(ofGetWidth() / 2))-2.0)*1.5);
 		this->cam->rotateUpDownCam(-((float)((float)((ofGetHeight() / 2) + ofGetMouseY()) / (float)(ofGetHeight() / 2)) - 2.0)*1.5);
+
 		/*if (ofGetMouseX() <= ((ofGetWidth() / 2) - 125)) {
 			this->cam->slidLeftRightCam(0.8);
 		}
