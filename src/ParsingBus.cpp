@@ -3,9 +3,7 @@
 ParsingBus::ParsingBus()
 {
 	this->urlBus = URLPORTLAND;
-	this->posBus = new ofSpherePrimitive();
-	this->posBus->setGlobalPosition(ofVec3f(0.0, 0.0, 0.0));
-	this->posBus->setPosition(ofVec3f(0.0, 0.0, 0.0));
+	this->posBusNull = new ofVec3f(0.0, 0.0, 0.0);
 	
 	this->result = new ofxJSONElement();
 	this->lockList = new mutex();
@@ -34,8 +32,7 @@ ParsingBus::ParsingBus(string url, int maxB)
 {
 	this->urlBus = url;
 	this->maxBus = maxB;
-	this->posBus = new ofSpherePrimitive();
-	this->posBus->setPosition(ofVec3f(0.0, 0.0, 0.0));
+	this->posBusNull = new ofVec3f(0.0, 0.0, 0.0);
 	this->result = new ofxJSONElement();
 	this->lockList = new mutex();
 	this->updateRun = true;
@@ -45,7 +42,7 @@ ParsingBus::ParsingBus(string url, int maxB)
 ofVec3f * ParsingBus::getPositionBus(){
 	//If no bus
 	if (this->indexRandom == -1 || this->listBus->at(this->indexRandom)==nullptr) {
-		return  &this->posBus->getPosition();
+		return  this->posBusNull;
 	}
 	return this->listBus->at(this->indexRandom)->getPosBus();
 }
@@ -216,7 +213,7 @@ ParsingBus::~ParsingBus()
 		this->listBus->clear();
 		delete this->listBus;
 	}
-	delete this->posBus;
+	delete this->posBusNull;
 	delete this->result;
 	delete this->lockList;
 }

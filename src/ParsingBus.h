@@ -13,6 +13,8 @@
 #define LATI " 45.5163462318906f"
 #define LATIMULT "82437.73468960672f"
 
+using namespace std;
+
 /**********************************************************************************************//**
  * \class	ParseBus
  *
@@ -21,7 +23,6 @@
  * \author	Nicolas
  * \date	10/12/2015
  **************************************************************************************************/
-using namespace std;
 class ParsingBus
 {
 	public:
@@ -106,7 +107,6 @@ class ParsingBus
 		bool drawing = true;
 		
 
-		/*int i;*/
 		int idB;
 		string busData;
 		string busFullData;
@@ -116,8 +116,7 @@ class ParsingBus
 		mutex * lockList = nullptr;
 		thread * threadUpdateBus = nullptr;
 		vector<Bus*> * listBus = nullptr;
-		ofSpherePrimitive * posBus = nullptr;
+		ofVec3f * posBusNull = nullptr;
 		ofxJSONElement * result = nullptr;
-			
 };
 
