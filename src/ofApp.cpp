@@ -121,27 +121,8 @@ void ofApp::draw(){
 		this->cam->update(*this->listBus->getPositionBus());
 	}
 	else {
-		//ofLogNotice("ofApp::setup") << ((float)((float)((ofGetWidth() / 2)+ofGetMouseX()) / (float)(ofGetWidth() / 2))-1.0)*1.5;
 		this->cam->rotateLeftRightCam(-((float)((float)((ofGetWidth() / 2)+ofGetMouseX()) / (float)(ofGetWidth() / 2))-2.0)*1.5);
 		this->cam->rotateUpDownCam(-((float)((float)((ofGetHeight() / 2) + ofGetMouseY()) / (float)(ofGetHeight() / 2)) - 2.0)*1.5);
-
-		/*if (ofGetMouseX() <= ((ofGetWidth() / 2) - 125)) {
-			this->cam->slidLeftRightCam(0.8);
-		}
-		else {
-			if (ofGetMouseX() >= ((ofGetWidth() / 2) + 125)) {
-				//(x + ((ofGetWidth() / 2) + 125)) / (ofGetWidth() - (((ofGetWidth() / 2) + 125)))
-				this->cam->slidLeftRightCam(-0.1);
-			}
-		}
-		if (ofGetMouseY()  <= ((ofGetHeight() / 2) - 125)) {
-			this->cam->slidUpDownCam(0.8);
-		}
-		else {
-			if (ofGetMouseY() >= ((ofGetHeight() / 2) + 125)) {
-				this->cam->slidUpDownCam(-0.8);
-			}
-		}*/
 	}
 
 	this->cam->camEnd();
@@ -182,22 +163,6 @@ void ofApp::keyPressed(int key){
 	if (key == 167) {
 		this->listBus->newRandIndexBus();
 	}
-	/*float speedM = 5.0;
-	switch (key)
-	{
-	case 122: this->cam->backForwardCam(-speedM);
-		break;
-	case 115: this->cam->backForwardCam(speedM);
-		break;
-	case 113: this->cam->leftRightCam(-speedM);
-		break;
-	case 100: this->cam->leftRightCam(speedM);
-		break;
-	case 97: this->cam->rotatCam(-speedM);
-		break;
-	case 101: this->cam->rotatCam(speedM);
-		break;
-	}*/
 }
 
 //--------------------------------------------------------------
@@ -273,42 +238,34 @@ void ofApp::keyReleased(int key){
 void ofApp::mouseMoved(int x, int y ){
 	
 }
-
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::mouseEntered(int x, int y){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::mouseExited(int x, int y){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
 
 }
-
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
