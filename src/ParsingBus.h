@@ -58,6 +58,15 @@ class ParsingBus
 		 **************************************************************************************************/
 		void draw(bool drag = true, bool showDat = true);
 
+		void setLockBus(bool v = false);
+		bool getLockBus();
+		/**********************************************************************************************//**
+		* \fn	void ParseBus::newRandIndexBus();
+		*
+		* \brief	Generate new index for looking camera.
+		**************************************************************************************************/
+		void newRandIndexBus();
+
 		/**********************************************************************************************//**
 		 * \fn	void ParseBus::stop();
 		 *
@@ -105,6 +114,7 @@ class ParsingBus
 		int indexRandom = -1;
 		bool updateRun = false;
 		bool drawing = true;
+		bool lockBus = false;
 		
 
 		int idB;

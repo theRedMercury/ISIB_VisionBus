@@ -157,7 +157,9 @@ void ParsingBus::run(){
 						}
 					}
 					this->lockList->unlock();
-					this->indexRandom = rand() % this->maxBusInList;
+					if (!this->lockBus) {
+						this->newRandIndexBus();
+					}
 				}
 			}
 			else
@@ -174,6 +176,17 @@ void ParsingBus::run(){
 		}
 		this->sleepThread(15000);
 	}
+}
+
+void ParsingBus::setLockBus(bool v) {
+	this->lockBus = v;
+}
+bool ParsingBus::getLockBus() {
+	return this->lockBus;
+}
+
+void ParsingBus::newRandIndexBus() {
+	this->indexRandom = rand() % this->listBus->size();
 }
 
 void ParsingBus::stop() {

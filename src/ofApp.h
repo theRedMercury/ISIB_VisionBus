@@ -56,7 +56,7 @@ class ofApp : public ofBaseApp{
 		
 		bool fullScreen = false;
 		bool autoCam = true;
-		bool keyMode[7] = {true, true ,true ,true ,false, true, true };
+		bool keyMode[7] = {true, true ,true ,true ,false, true, true};
 		bool keyIsDown[255];
 		float speedCam = 5.0;
 

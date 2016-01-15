@@ -160,7 +160,7 @@ void ofApp::draw(){
 	if (keyMode[5]) {
 		ofSetColor(0, 0, 0, 255.0);
 		this->dataToScreenLeft.str("");
-		this->dataToScreenLeft << this->listBus->getDataBus() << std::endl;
+		this->dataToScreenLeft << this->listBus->getDataBus() << "\n" << keyMode[7] << std::endl;
 		ofDrawBitmapString(this->dataToScreenLeft.str(), 5, 14);
 	}
 
@@ -179,6 +179,9 @@ void ofApp::keyPressed(int key){
 		keyIsDown[key] = true;
 	}
 	//ofLogNotice("ofApp::setup") << key;
+	if (key == 167) {
+		this->listBus->newRandIndexBus();
+	}
 	/*float speedM = 5.0;
 	switch (key)
 	{
@@ -234,6 +237,8 @@ void ofApp::keyReleased(int key){
 	case 34: keyMode[2] = !keyMode[2];
 		break;
 	case 39: keyMode[3] = !keyMode[3];
+		break;
+	case 40: this->listBus->setLockBus(!this->listBus->getLockBus());
 		break;
 	case 232: this->autoCam = !this->autoCam;
 		break;
