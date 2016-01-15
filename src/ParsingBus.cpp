@@ -103,7 +103,6 @@ void ParsingBus::run(){
 
 					else{
 						if (this->maxBusInList > this->listBus->size()) {
-							ofLogNotice("ofApp::setup") << "Need to create Bus";
 							//this->lockList->lock();
 							for (int i = 0; i < (this->listBus->size() - maxBus); i++) {
 								this->listBus->push_back(new Bus());
@@ -140,8 +139,8 @@ void ParsingBus::run(){
 									//float poX = (((atof(lo.c_str())) - -122.670188804517) * 39976.70848671395);
 									//float poY = (((atof(la.c_str())) - 45.5163462318906) * 82437.73468960672);
 									
-									this->listBus->at(ind)->setCoord(-(((atof(lo.c_str())) - -122.670188804517) * 39976.70848671395),
-										-(((atof(la.c_str())) - 45.5163462318906) * 82437.73468960672));
+									this->listBus->at(ind)->setCoord(-(((atof(lo.c_str())) - this->longi) * this->longiMulti),
+										-(((atof(la.c_str())) - this->latit) * this->latitMulti));
 									
 									ind = this->maxBusInList;//Stop While if Bus Found
 								}

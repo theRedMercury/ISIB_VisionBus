@@ -8,6 +8,10 @@
 #include "ofxJSON\src\ofxJSON.h"
 
 #define URLPORTLAND "https://developer.trimet.org/ws/v2/vehicles/locIDs/6849,6850/appID/XXXXXXXXXXXXXXXXXXXXXXXXX"
+#define LONG "-122.670188804517f"
+#define LONGMULT "39976.70848671395f"
+#define LATI " 45.5163462318906f"
+#define LATIMULT "82437.73468960672f"
 
 /**********************************************************************************************//**
  * \class	ParseBus
@@ -88,6 +92,11 @@ class ParsingBus
 
 	private:
 		void sleepThread(int msTime = 1000);
+
+		float  longi = -122.670188804517;
+		float  longiMulti = 39976.70848671395;
+		float  latit = 45.5163462318906;
+		float  latitMulti  = 82437.73468960672;
 
 		string urlBus = "";
 		int maxBus = 250;
