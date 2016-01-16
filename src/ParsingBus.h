@@ -8,15 +8,11 @@
 #include "ofxJSON\src\ofxJSON.h"
 
 #define URLPORTLAND "https://developer.trimet.org/ws/v2/vehicles/locIDs/6849,6850/appID/XXXXXXXXXXXXXXXXXXXXXXXXX"
-#define LONG "-122.670188804517f"
-#define LONGMULT "39976.70848671395f"
-#define LATI " 45.5163462318906f"
-#define LATIMULT "82437.73468960672f"
 
 using namespace std;
 
 /**********************************************************************************************//**
- * \class	ParseBus
+ * \class	ParsingBus
  *
  * \brief	A parse bus.
  *
@@ -28,28 +24,28 @@ class ParsingBus
 	public:
 
 		/**********************************************************************************************//**
-		 * \fn	ParseBus::ParseBus();
+		 * \fn	ParsingBus::ParsingBus();
 		 *
 		 * \brief	Default constructor.
 		 **************************************************************************************************/
 		ParsingBus();
 		
 		/**********************************************************************************************//**
-		* \fn	ParseBus::ParseBus(string url, int maxB);
+		* \fn	ParsingBus::ParsingBus(string url, int maxB);
 		*
 		* \brief	Default constructor.
 		**************************************************************************************************/
 		ParsingBus(string url, int maxB);
 
 		/**********************************************************************************************//**
-		 * \fn	void ParseBus::run();
+		 * \fn	void ParsingBus::run();
 		 *
 		 * \brief	Runs this object.
 		 **************************************************************************************************/
 		void run();
 
 		/**********************************************************************************************//**
-		 * \fn	void ParseBus::draw(bool drag = true, bool showDat = true);
+		 * \fn	void ParsingBus::draw(bool drag = true, bool showDat = true);
 		 *
 		 * \brief	Draws.
 		 *
@@ -58,24 +54,38 @@ class ParsingBus
 		 **************************************************************************************************/
 		void draw(bool drag = true, bool showDat = true);
 
-		void setLockBus(bool v = false);
-		bool getLockBus();
 		/**********************************************************************************************//**
-		* \fn	void ParseBus::newRandIndexBus();
+		* \fn	void ParsingBus::setLockBus(bool v = false);
+		*
+		* \brief	Lock camera for one bus.
+		*
+		* \param	c   	true to lock camera on the bus.
+		**************************************************************************************************/
+		void setLockBus(bool v = false);
+
+		/**********************************************************************************************//**
+		* \fn	void ParsingBus::getLockBus();
+		*
+		* \brief	Get if camera is lock or not.
+		**************************************************************************************************/
+		bool getLockBus();
+
+		/**********************************************************************************************//**
+		* \fn	void ParsingBus::newRandIndexBus();
 		*
 		* \brief	Generate new index for looking camera.
 		**************************************************************************************************/
 		void newRandIndexBus();
 
 		/**********************************************************************************************//**
-		 * \fn	void ParseBus::stop();
+		 * \fn	void ParsingBus::stop();
 		 *
 		 * \brief	Stops this object.
 		 **************************************************************************************************/
 		void stop();
 
 		/**********************************************************************************************//**
-		 * \fn	ofVec3f * ParseBus::getPositionBus();
+		 * \fn	ofVec3f * ParsingBus::getPositionBus();
 		 *
 		 * \brief	Gets position bus.
 		 *
@@ -85,7 +95,7 @@ class ParsingBus
 
 
 		/**********************************************************************************************//**
-		 * \fn	string ParseBus::getDataBus();
+		 * \fn	string ParsingBus::getDataBus();
 		 *
 		 * \brief	Gets data bus.
 		 *
@@ -94,7 +104,7 @@ class ParsingBus
 		string getDataBus();
 
 		/**********************************************************************************************//**
-		 * \fn	ParseBus::~ParseBus();
+		 * \fn	ParsingBus::~ParsingBus();
 		 *
 		 * \brief	Destructor.
 		 **************************************************************************************************/

@@ -48,6 +48,7 @@ Bus::Bus(int id, string d, string dat, float fx, float fy)
 		this->effecBlur[i]->setRadius((i / 1.5) + radiusB);
 	}
 }
+
 int Bus::getId() {
 	return this->idBus;
 }

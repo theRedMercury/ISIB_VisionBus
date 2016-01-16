@@ -72,5 +72,4 @@ class ofApp : public ofBaseApp{
 		CamControl * cam;
 		MatrixMap * matrixMapTextur;
 		ParsingBus * listBus;
-
 };

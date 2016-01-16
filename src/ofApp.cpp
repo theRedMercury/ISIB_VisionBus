@@ -141,7 +141,7 @@ void ofApp::draw(){
 	if (keyMode[5]) {
 		ofSetColor(0, 0, 0, 255.0);
 		this->dataToScreenLeft.str("");
-		this->dataToScreenLeft << this->listBus->getDataBus() << "\n" << keyMode[7] << std::endl;
+		this->dataToScreenLeft << this->listBus->getDataBus() << "\n" << this->listBus->getLockBus() << std::endl;
 		ofDrawBitmapString(this->dataToScreenLeft.str(), 5, 14);
 	}
 
