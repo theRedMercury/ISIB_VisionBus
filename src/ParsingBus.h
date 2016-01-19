@@ -40,7 +40,7 @@ class ParsingBus
 		/**********************************************************************************************//**
 		 * \fn	void ParsingBus::run();
 		 *
-		 * \brief	Runs this object.
+		 * \brief	Run the thread for parsing.
 		 **************************************************************************************************/
 		void run();
 
@@ -89,7 +89,7 @@ class ParsingBus
 		 *
 		 * \brief	Gets position bus.
 		 *
-		 * \return	null if it fails, else the position bus.
+		 * \return	ofVec3f		XYZ Position.
 		 **************************************************************************************************/
 		ofVec3f *  getPositionBus();
 
@@ -99,7 +99,7 @@ class ParsingBus
 		 *
 		 * \brief	Gets data bus.
 		 *
-		 * \return	The data bus.
+		 * \return	The data of the bus.
 		 **************************************************************************************************/
 		string getDataBus();
 

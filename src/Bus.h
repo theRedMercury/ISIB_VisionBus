@@ -103,7 +103,7 @@ class Bus
 		 *
 		 * \brief	Sets the radius.
 		 *
-		 * \param	i	Zero-based index of the.
+		 * \param	i	Radius of the circle for the bus
 		 **************************************************************************************************/
 		void setRadius(float i = 6.0);
 
@@ -122,7 +122,7 @@ class Bus
 		 *
 		 * \brief	Sets a data.
 		 *
-		 * \param	dat	The dat.
+		 * \param	dat	The data for the bus.
 		 **************************************************************************************************/
 		void setData(string dat="");
 
@@ -131,7 +131,7 @@ class Bus
 		 *
 		 * \brief	Sets full data.
 		 *
-		 * \param	fDat	The dat.
+		 * \param	fDat	The full data for the bus.
 		 **************************************************************************************************/
 		void setFullData(string fDat = "");
 
@@ -140,7 +140,7 @@ class Bus
 		 *
 		 * \brief	Sets a blur.
 		 *
-		 * \param	b	true to b.
+		 * \param	b	Set the blur effect.
 		 **************************************************************************************************/
 		void setBlur(bool b = true);
 
@@ -149,7 +149,7 @@ class Bus
 		 *
 		 * \brief	Sets an exist.
 		 *
-		 * \param	e	true to e.
+		 * \param	e	Set  the bus exist.
 		 **************************************************************************************************/
 		void setExist(bool e = true);
 

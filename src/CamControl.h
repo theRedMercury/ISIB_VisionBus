@@ -109,7 +109,7 @@ class CamControl
 		* \fn	void CamControl::update(ofVec3f data);
 		*
 		* \brief	Updates the given data.
-		* \param [in,out]	data	If non-null, the data.
+		* \param ofVec3f	data	XYZ position
 		**************************************************************************************************/
 		void update(ofVec3f data);
 
